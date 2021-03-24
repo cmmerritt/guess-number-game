@@ -17,6 +17,7 @@ const computerChoice = Math.ceil(Math.random() * 20);
 // initialize state
 
 let guessesRemaining = 4;
+guessesRemainingDisplay.textContent = `${guessesRemaining}`;
 
 // set event listeners to update state and DOM
 
@@ -35,9 +36,10 @@ guessButton.addEventListener('click', () => {
             highOrLowMessage.textContent = 'Your guess is too high. Try again!';
             guessesRemainingDisplay.textContent = `${guessesRemaining}`;
         }
-    } else {
+    } else if (guessesRemaining === 1) {
         guessesRemaining--;
         guessesRemainingDisplay.textContent = `${guessesRemaining}`;
+        highOrLowMessage.textContent = '';
         loseOrWinMessage.textContent = 'You lose!';
     }
 });
