@@ -21,7 +21,7 @@ let guessesRemaining = 4;
 // set event listeners to update state and DOM
 
 guessButton.addEventListener('click', () => {
-    while (guessesRemaining > 0) {
+    if (guessesRemaining > 0) {
         guessesRemaining--;
         let numberGuess = Number(guess.value);
         const comparison = compareNumbers(numberGuess, computerChoice);
@@ -34,3 +34,7 @@ guessButton.addEventListener('click', () => {
         } else if (comparison === 1) {
             highOrLowMessage.textContent = 'Your guess is too high. Try again!';
             guessesRemainingDisplay.textContent = `${guessesRemaining}`;
+        }
+    } else loseOrWinMessage.textContent = 'You lose!';
+});
+ 
