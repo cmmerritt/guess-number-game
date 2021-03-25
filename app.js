@@ -27,8 +27,10 @@ guessButton.addEventListener('click', () => {
         let numberGuess = Number(guess.value);
         const comparison = compareNumbers(numberGuess, computerChoice);
         if (comparison === 0) {
-            loseOrWinMessage.textContent = 'You win!';
+            highOrLowMessage.textContent = '';
             guessesRemainingDisplay.textContent = `${guessesRemaining}`;
+            loseOrWinMessage.textContent = 'You win!';
+            guessButton.style.visibility.hidden;
         } else if (comparison === -1) {
             highOrLowMessage.textContent = 'Your guess is too low. Try again!';
             guessesRemainingDisplay.textContent = `${guessesRemaining}`;

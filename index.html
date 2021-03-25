@@ -14,45 +14,52 @@
 
 <body>
     <header>
-        <div>
-        </div>
+            <img src="./assets/guess-the-number.png">
     </header>
     <main>
+        <img src="./assets/shall-we-play.png" height=300px>
         <section class="main-section">
-            <h2>
-                Guess the number!
-            </h2>
-
             <content>
             <p> 
                 Can you guess the correct number before the rogue supercomputer wins and destroys the world?
             </p>
             <hr />
-            <section>
+            <section class="column">
                 <span>Guess a number between 1 and 20:</span>
+                <br />
                 <input id="number-guess-input"> 
+                <br />
                 <button id="guess-button">Guess!</button>
+                <br />
                 <span id="high-or-low-message"></span>
+                <br />
                 <span>Guesses remaining:</span>
+                <br />
                 <span id="guesses-remaining-display"></span>
+                <br />
                 <span id="lose-or-win-message"></span>
+                <br />
                 <a href = "./index.html"><button id="reset-button">Reset!</button></a>
+                <br />
 
             </section>
-            <section>
+            <section class="column" id="instructions">
+                <br />
+                <br />
+                <br />
                 <h3>How to Play</h3>
                     <p>
                         WOPR has chosen a magic number. Your task, if you choose to accept,
                         is to guess the number within four attempts. If you make a correct guess
                         before time runs out, you win. 
                     </p>
+                    <br />
                     <p> 
                         WOPR has benevolently agreed to tell you after each guess whether your guess 
                         is higher or lower than the magic number. But beware: when your remaining 
                         attempts reach 0, you have failed....
                     </p>
             </section>
-
         </section>
     </main>
     <footer>
