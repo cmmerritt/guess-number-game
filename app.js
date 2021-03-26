@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
 
-import { compareNumbers } from './utils.js';
+import { compareNumbers, getHighOrLowText } from './utils.js';
 
 const guess = document.getElementById('number-guess-input');
 
@@ -21,22 +21,28 @@ guessesRemainingDisplay.textContent = `${guessesRemaining}`;
 
 // set event listeners to update state and DOM
 
+/* Refactor so message text is calculated for display within 
+another function [getComparisonResultTest]
+-if comp is 0, display 'You win!' on loseOrWinMessage, set highOrLowMessage 
+to empty string, and set guessButton style display to none
+-if comp is -1, set highOrLowMessage to 'guess too low'
+-if comp is -1, set highOrLowMessage to 'guess too high'
+
+*/
+
 guessButton.addEventListener('click', () => {
     if (guessesRemaining > 1) {
         guessesRemaining--;
+        guessesRemainingDisplay.textContent = `${guessesRemaining}`;
         let numberGuess = Number(guess.value);
         const comparison = compareNumbers(numberGuess, computerChoice);
+
+        let highOrLowString = getHighOrLowText(comparison);
+        highOrLowMessage.textContent = highOrLowString;
+
         if (comparison === 0) {
-            highOrLowMessage.textContent = '';
-            guessesRemainingDisplay.textContent = `${guessesRemaining}`;
             loseOrWinMessage.textContent = 'You win!';
-            guessButton.style.visibility.hidden;
-        } else if (comparison === -1) {
-            highOrLowMessage.textContent = 'Your guess is too low. Try again!';
-            guessesRemainingDisplay.textContent = `${guessesRemaining}`;
-        } else if (comparison === 1) {
-            highOrLowMessage.textContent = 'Your guess is too high. Try again!';
-            guessesRemainingDisplay.textContent = `${guessesRemaining}`;
+            guessButton.style.display = 'none';
         }
     } else if (guessesRemaining === 1) {
         guessesRemaining--;
@@ -45,4 +51,6 @@ guessButton.addEventListener('click', () => {
         loseOrWinMessage.textContent = 'You lose!';
     }
 });
+
+// let healthString = getPlantHealthText(plantHealth);
  
