@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
 
-import { compareNumbers, getHighOrLowText, loseOrWinText } from './utils.js';
+import { compareNumbers, getHighOrLowText, loseOrWinText, guessButtonDisplayStatus } from './utils.js';
 
 const guess = document.getElementById('number-guess-input');
 
@@ -36,10 +36,6 @@ guessButton.addEventListener('click', () => {
     let loseOrWinString = loseOrWinText(comparison, guessesRemaining);
     loseOrWinMessage.textContent = loseOrWinString;
 
-    // let guessButtonDisplayStatusString = guessButtonDisplayStatus(comparison, guessesRemaining);
-    // guessButton.style.display = guessButtonDisplayStatusString;
-
-    if (guessesRemaining === 0 || comparison === 0) {
-        guessButton.style.display = 'none';
-    }
+    let guessButtonDisplayStatusString = guessButtonDisplayStatus(comparison, guessesRemaining);
+    guessButton.style.display = guessButtonDisplayStatusString;
 });
