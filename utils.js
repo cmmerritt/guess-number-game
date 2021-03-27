@@ -24,4 +24,9 @@ export function loseOrWinText(outcome, guessesRemaining) {
     }
 }
 
+export function guessButtonDisplayStatus(comparison, guessesRemaining) {
+    if (guessesRemaining === 0 || comparison === 0) {
+        return 'none';
+    }
+}
 
