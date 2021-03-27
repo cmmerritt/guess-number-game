@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
 
-import { compareNumbers, getHighOrLowText } from './utils.js';
+import { compareNumbers, getHighOrLowText, loseOrWinText } from './utils.js';
 
 const guess = document.getElementById('number-guess-input');
 
@@ -21,36 +21,25 @@ guessesRemainingDisplay.textContent = `${guessesRemaining}`;
 
 // set event listeners to update state and DOM
 
-/* Refactor so message text is calculated for display within 
-another function [getComparisonResultTest]
--if comp is 0, display 'You win!' on loseOrWinMessage, set highOrLowMessage 
-to empty string, and set guessButton style display to none
--if comp is -1, set highOrLowMessage to 'guess too low'
--if comp is -1, set highOrLowMessage to 'guess too high'
-
-*/
 
 guessButton.addEventListener('click', () => {
-    if (guessesRemaining > 1) {
-        guessesRemaining--;
-        guessesRemainingDisplay.textContent = `${guessesRemaining}`;
-        let numberGuess = Number(guess.value);
-        const comparison = compareNumbers(numberGuess, computerChoice);
+    guessesRemaining--;
 
-        let highOrLowString = getHighOrLowText(comparison);
-        highOrLowMessage.textContent = highOrLowString;
+    guessesRemainingDisplay.textContent = `${guessesRemaining}`;
+        
+    let numberGuess = Number(guess.value);
+    const comparison = compareNumbers(numberGuess, computerChoice);
 
-        if (comparison === 0) {
-            loseOrWinMessage.textContent = 'You win!';
-            guessButton.style.display = 'none';
-        }
-    } else if (guessesRemaining === 1) {
-        guessesRemaining--;
-        guessesRemainingDisplay.textContent = `${guessesRemaining}`;
-        highOrLowMessage.textContent = '';
-        loseOrWinMessage.textContent = 'You lose!';
+    let highOrLowString = getHighOrLowText(comparison, guessesRemaining);
+    highOrLowMessage.textContent = highOrLowString;
+
+    let loseOrWinString = loseOrWinText(comparison, guessesRemaining);
+    loseOrWinMessage.textContent = loseOrWinString;
+
+    // let guessButtonDisplayStatusString = guessButtonDisplayStatus(comparison, guessesRemaining);
+    // guessButton.style.display = guessButtonDisplayStatusString;
+
+    if (guessesRemaining === 0 || comparison === 0) {
+        guessButton.style.display = 'none';
     }
 });
-
-// let healthString = getPlantHealthText(plantHealth);
- 
